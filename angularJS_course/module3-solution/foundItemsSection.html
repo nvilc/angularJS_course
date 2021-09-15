@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row" ng-if="list.items[0] != 'Empty search'" ng-repeat="item in list.items">
+    <div class="col-xs-3">
+      {{item.name}}
+    </div>
+    <div class="col-xs-3">
+      {{item.short_name}}
+    </div>
+    <div class="col-xs-3">
+      {{item.description}}
+    </div>
+    <div class="col-xs-3">
+      <div class="form-group narrow-button">
+        <button class="btn btn-warning" ng-click="list.onRemove({index: $index});">Don't want this one!</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="error" ng-if="list.foundItemsIsEmtpy();">
+    Nothing found
+  </div>
+</div>
