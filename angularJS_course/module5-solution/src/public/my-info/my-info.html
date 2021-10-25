@@ -1,0 +1,39 @@
+<div class="container">
+  <div ng-if="MyInfoCtrl.userAvailable">
+    <div class="row">
+      <label for="FirstNameLabel" class="col-xs-6">First Name: </label>
+      <div class="col-xs-6" id="FirstNameLabel">{{ MyInfoCtrl.firstName }}</div>
+    </div>
+    <div class="row">
+      <label for="LastNameLabel" class="col-xs-6">Last Name: </label>
+      <div class="col-xs-6" id="LastNameLabel">{{ MyInfoCtrl.lastName }}</div>
+    </div>
+    <div class="row">
+      <label for="EmailLabel" class="col-xs-6">Email: </label>
+      <div class="col-xs-6" id="EmailLabel">{{ MyInfoCtrl.email }}</div>
+    </div>
+    <div class="row">
+      <label for="PhoneLabel" class="col-xs-6">Phone: </label>
+      <div class="col-xs-6" id="PhoneLabel">{{ MyInfoCtrl.phone }}</div>
+    </div>
+    <div class="row">
+      <label for="menuNumberLabel" class="col-xs-6">Favorite Menu Item: </label>
+      <div class="col-xs-6" id="menuNumberLabel">{{ MyInfoCtrl.favoriteDishNumber }}</div>
+    </div>
+    <div class="row">
+      <label for="menuItemTitleLabel" class="col-xs-6">Menu Item Name: </label>
+      <div class="col-xs-6" id="menuItemTitleLabel">{{ MyInfoCtrl.name }}</div>
+    </div>
+    <div class="row">
+      <label for="menuItemDescriptionLabel" class="col-xs-6">Menu Item Description: </label>
+      <div class="col-xs-6" id="menuItemDescriptionLabel">{{ MyInfoCtrl.description }}</div>
+    </div>
+    <div class="row">
+      <img class="img-responsive" width="250" height="150" ng-src="https://nvilc-angular-solution5.herokuapp.com/images/{{MyInfoCtrl.favoriteDishNumber}}.jpg" alt="{{MyInfoCtrl.name}}">
+    </div>
+  </div>
+  <div ng-if="!MyInfoCtrl.userAvailable">
+    <p>No user has been registered. Click below to go to the register page: </p>
+    <a ui-sref="public.sign_up" class="btn btn-warning">Sign Up!</a>
+  </div>
+</div>

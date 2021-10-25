@@ -2,12 +2,12 @@
   <h2>Welcome To The Sign-Up Page!</h2>
   <h3>Please Enter the Below Information to Sign Up:</h3>
 
-  <form name="signUpForm" novalidate>
+  <form name="signUpForm" id="signUpForm" novalidate>
     <input type="text" name="firstName" placeholder="First Name"
-      ng-model="signUpCtrl.user.firstName"
+      ng-model="signUpCtrl.firstName"
       required
       min-length="2"
-      ng-maxlength="15"> {{signUpCtrl.user.firstName}}
+      ng-maxlength="15">
       <span
         ng-if="(signUpForm.firstName.$error.minlength ||
         signUpForm.firstName.$error.required) && signUpForm.firstName.$touched">
@@ -15,16 +15,16 @@
       </span>
       <span
         ng-if="(signUpForm.firstName.$error.maxlength
-        && signUpForm.firstName.$touched">
+        && signUpForm.firstName.$touched)">
         First name must be no longer than 15 characters
       </span>
       <br>
 
     <input type="text" name="lastName" placeholder="Last Name"
-      ng-model="signUpCtrl.user.lastName"
+      ng-model="signUpCtrl.lastName"
       required
       min-length="2"
-      ng-maxlength="15"> {{signUpCtrl.user.lastName}}
+      ng-maxlength="15">
       <span
         ng-if="(signUpForm.lastName.$error.minlength ||
         signUpForm.lastName.$error.required) && signUpForm.lastName.$touched">
@@ -32,48 +32,60 @@
       </span>
       <span
         ng-if="(signUpForm.lastName.$error.maxlength
-        && signUpForm.lastName.$touched">
+        && signUpForm.lastName.$touched)">
         Last name must be no longer than 15 characters
       </span>
       <br>
 
     <input type="email" name="email" placeholder="Email"
-      ng-model="signUpCtrl.user.email"
+      ng-model="signUpCtrl.email"
       required>
       <span
-        ng-if="(signUpForm.email.$invalid && signUpForm.email.$touched">
+        ng-if="(signUpForm.email.$invalid && signUpForm.email.$touched)">
         Must be a valid email address: handle@domain
       </span>
       <br>
 
     <input type="text" name="phone" placeholder="phone" placeholder="Phone ###-###-####"
-      ng-model="signUpCtrl.user.phone"
+      ng-model="signUpCtrl.phone"
       pattern="(\d{3})-(\d{3})-(\d{4})">
       <span
-        ng-if="(signUpForm.phone.$invalid && signUpForm.phone.$touched">
+        ng-if="(signUpForm.phone.$invalid && signUpForm.phone.$touched)">
         Must be a valid phone number: ###-###-####
       </span>
       <br>
 
-    <input type="text" name="favoriteDish" placeholder="Please Enter Number Of Favorite Dish"
-      ng-model="signUpCtrl.user.favoriteDish"
+    <input type="text" name="favoriteDish" placeholder="Favorite Dish Number"
+      ng-model="signUpCtrl.favoriteDish"
       required
       min-length="2"
-      ng-maxlength="15"> {{signUpCtrl.user.lastName}}
+      ng-maxlength="4">
       <span
-        ng-if="(signUpForm.lastName.$error.minlength ||
-        signUpForm.lastName.$error.required) && signUpForm.lastName.$touched">
-        Last name must be at least 2 characters long
+        ng-if="(signUpForm.favoriteDish.$error.minlength ||
+        signUpForm.favoriteDish.$error.required) && signUpForm.favoriteDish.$touched">
+        Favorite dish number must be at least 2 characters long
       </span>
       <span
-        ng-if="(signUpForm.lastName.$error.maxlength
-        && signUpForm.lastName.$touched">
-        Last name must be no longer than 15 characters
+        ng-if="!signUpCtrl.favoriteDishLocated && !signUpCtrl.favoriteDishMessageDisabled">
+        Favorite dish was not found. Please enter a valid Menu Item number.
       </span>
       <br>
 
-    <button ng-disabled="signUpForm.$invalid"
-      ng-click="signUpCtrl.submit()">Submit</button>
+    <button ng-disabled="signUpForm.$invalid" id="SignUpSubmitBtn"
+      ng-click="signUpCtrl.submit($event)">Submit</button>
 
+      <!-- Successful Message -->
+    <div class="row" ng-if="signUpCtrl.registrationCompleted && signUpCtrl.favoriteDishLocated">
+      <div class="col-xl-12">
+        Registration Successful!
+      </div>
+    </div>
+      <!-- Error message -->
+    <div class="row" ng-if="!signUpCtrl.registrationCompleted && !signUpCtrl.registrationMessageDisabled">
+      <div class="col-xl-12">
+        Unable to complete registration. Please ensure that all the data being entered is correct, including <br>
+        your favorite dish number.
+      </div>
+    </div>
   </form>
 </div>

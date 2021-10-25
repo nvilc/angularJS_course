@@ -111,6 +111,15 @@ h3.menu-item-title {
   font-size: .9em;
   font-style: italic;
 }
+
+#signUpForm {
+  color: black;
+}
+
+#SignUpSubmitBtn {
+  background-color: #3474eb;
+}
+
 /* END SINGLE CATEGORY PAGE */
 
 
